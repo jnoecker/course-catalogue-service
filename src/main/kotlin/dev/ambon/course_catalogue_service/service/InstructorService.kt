@@ -6,8 +6,15 @@ import dev.ambon.course_catalogue_service.repository.InstructorRepository
 import org.springframework.stereotype.Service
 import java.util.Optional
 
+/**
+ * Business logic for managing Instructor entities.
+ */
 @Service
 class InstructorService(val instructorRepository: InstructorRepository) {
+
+    /**
+     * Persist a new Instructor and return the saved DTO.
+     */
     fun createInstructor(instructorDTO: InstructorDTO): InstructorDTO {
         val instructorEntity = instructorDTO.let {
             Instructor(it.id, it.name)
@@ -19,6 +26,9 @@ class InstructorService(val instructorRepository: InstructorRepository) {
         }
     }
 
+    /**
+     * Locate an Instructor by id.
+     */
     fun findByInstructorId(instructorId: Int) : Optional<Instructor> {
         return instructorRepository.findById(instructorId)
     }
